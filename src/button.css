@@ -1,0 +1,144 @@
+@property --ols-button-deg {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+@property --ols-button-scale {
+  syntax: "<number>";
+    initial-value: 0.6;
+    inherits: false;
+}
+
+.ols-button{
+    --ols-button-width: 200px;
+    --ols-button-height: 70px;
+    --ols-button-border-radius: 36px;
+    --ols-button-bc-color:  transparent 60%, #000;
+    --ols-button-color: #000;
+    --ols-button-padding: 5px;
+    --ols-button-opacity: 0.4;
+    --ols-button-font-color: #fff;
+    --ols-button-font-size: 3rem;
+
+    position: relative;
+
+    width: var(--ols-button-width);
+    height: var(--ols-button-height);
+    border: none;
+    border-radius: var(--ols-button-border-radius);
+    outline: none;
+    background-color: var(--ols-button-color);
+    color: var(--ols-button-font-color);
+    font-size: var(--ols-button-font-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+
+    transition:
+            background-color 0.1s linear,
+            border 0.05s linear,
+            color 0.1s linear;
+
+    box-sizing: border-box;
+}
+
+.ols-button::before, .ols-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: var(--ols-button-width);
+    height: var(--ols-button-height);
+    border: none;
+    outline: none;
+    border-radius: var(--ols-button-border-radius);
+    background-image: conic-gradient(from var(--ols-button-deg), var(--ols-button-bc-color));
+
+    padding: var(--ols-button-padding);
+
+    transform: translate(-50%, -50%) scale(var(--ols-button-scale));
+
+    transition:
+            --ols-button-scale 0.3s ease-in,
+            --ols-button-bc-color 1s linear;
+
+    animation: ols-button-spin 3s infinite linear;
+
+    z-index: -1;
+
+}
+.ols-button:hover::before, .ols-button:hover::after {
+    --ols-button-scale: 1;
+    transition: --ols-button-scale 0.2s ease-out;
+}
+.ols-button::before{
+    filter: blur(10px);
+    opacity: var(--ols-button-opacity);
+}
+@keyframes ols-button-spin {
+    from { --ols-button-deg: 0deg; }
+    to { --ols-button-deg: 360deg; }
+}
+
+.ols-button svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: none;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.ols-button span{
+    width: inherit;
+    height: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    opacity: 1;
+
+    transition:
+            opacity 0.1s linear,
+            transform 0.1s linear;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+#rotating-circle {
+    transform: rotate(90deg) scaleX(1);
+
+    transform-origin: 50% 50%;
+
+    stroke-dasharray: 503;
+
+    stroke-dashoffset: 503;
+
+    animation: drawCircle 0.8s ease-out forwards;
+}
+
+#rotating-tick{
+    stroke-dasharray: 503;
+
+    stroke-dashoffset: 503;
+
+    animation: drawCircle 2s ease-out forwards;
+
+    animation-delay: 0.8s;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
