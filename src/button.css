@@ -13,7 +13,8 @@
     --ols-button-width: 200px;
     --ols-button-height: 70px;
     --ols-button-border-radius: 36px;
-    --ols-button-bc-color:  transparent 60%, #000;
+    /*--ols-button-bc-color:  transparent 60%, #000;*/
+    --ols-button-bc-color:  #ff6b6b, #eeaeee, #ff6b6b;
     --ols-button-color: #000;
     --ols-button-padding: 5px;
     --ols-button-opacity: 0.4;
@@ -43,6 +44,8 @@
             color 0.1s linear;
 
     box-sizing: border-box;
+
+    overflow-clip: hidden;
 }
 
 .ols-button::before, .ols-button::after {
@@ -55,7 +58,7 @@
     height: var(--ols-button-height);
     border: none;
     outline: none;
-    border-radius: var(--ols-button-border-radius);
+    border-radius: calc(var(--ols-button-border-radius) * 2);
     background-image: conic-gradient(from var(--ols-button-deg), var(--ols-button-bc-color));
 
     padding: var(--ols-button-padding);
@@ -68,7 +71,7 @@
 
     animation: ols-button-spin 3s infinite linear;
 
-    z-index: -1;
+    z-index: -2;
 
 }
 .ols-button:hover::before, .ols-button:hover::after {
@@ -120,17 +123,17 @@
 
     transform-origin: 50% 50%;
 
-    stroke-dasharray: 503;
+    stroke-dasharray: 500;
 
-    stroke-dashoffset: 503;
+    stroke-dashoffset: 500;
 
     animation: drawCircle 0.8s ease-out forwards;
 }
 
 #rotating-tick{
-    stroke-dasharray: 503;
+    stroke-dasharray: 10;
 
-    stroke-dashoffset: 503;
+    stroke-dashoffset: 10;
 
     animation: drawCircle 2s ease-out forwards;
 
@@ -142,3 +145,4 @@
         stroke-dashoffset: 0;
     }
 }
+
